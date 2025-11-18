@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yogi Putra Pratama - Digital Innovation Leader</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yogi Putra Pratama — Digital Innovation Leader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
+        :root {
+            --bg: #020510;
+            --fg: #f6f8ff;
+            --muted: rgba(222, 226, 255, 0.72);
+            --accent: linear-gradient(135deg, #00f5a0 0%, #00d9f5 50%, #4f46ef 100%);
+            --glass: rgba(15, 25, 46, 0.55);
+            --glass-strong: rgba(27, 38, 68, 0.75);
+            --border: rgba(255, 255, 255, 0.12);
+            --highlight: rgba(79, 70, 239, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,623 +26,993 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-            color: #2c3e50;
-            line-height: 1.6;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #0b1224 0%, #050914 45%, #01030a 100%);
+            color: var(--fg);
             min-height: 100vh;
+            padding: clamp(20px, 4vw, 48px);
+            display: flex;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .background {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -2;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 20px;
+        .gradient {
+            position: absolute;
+            width: clamp(280px, 40vw, 480px);
+            height: clamp(280px, 40vw, 480px);
+            filter: blur(60px);
+            opacity: 0.55;
+            border-radius: 50%;
+            animation: float 18s ease-in-out infinite;
         }
 
-        .header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .gradient-1 {
+            top: -120px;
+            right: 10%;
+            background: radial-gradient(circle, rgba(0, 245, 160, 0.65), rgba(2, 4, 13, 0));
+        }
+
+        .gradient-2 {
+            bottom: -160px;
+            left: -80px;
+            background: radial-gradient(circle, rgba(79, 70, 239, 0.75), rgba(2, 4, 13, 0));
+            animation-delay: 4s;
+        }
+
+        .gradient-3 {
+            top: 35%;
+            right: -150px;
+            background: radial-gradient(circle, rgba(0, 217, 245, 0.6), rgba(2, 4, 13, 0));
+            animation-delay: 8s;
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+            mix-blend-mode: soft-light;
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .page {
+            width: min(1180px, 100%);
+            position: relative;
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            inset: -120px -180px;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 60%);
+            filter: blur(120px);
+            z-index: -1;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: clamp(40px, 6vw, 80px);
+        }
+
+        .brand {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.2em;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .brand strong {
+            color: #8aa4ff;
+            letter-spacing: 0.35em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: clamp(12px, 2vw, 24px);
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            transition: all 0.35s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            border-color: rgba(255, 255, 255, 0.16);
+            color: var(--fg);
+            box-shadow: 0 12px 35px rgba(79, 70, 239, 0.25);
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(40px, 6vw, 70px);
+        }
+
+        .hero {
+            display: grid;
+            gap: clamp(28px, 5vw, 56px);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            align-items: center;
+        }
+
+        .hero-copy {
+            position: relative;
+        }
+
+        .status-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: rgba(79, 70, 239, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #cdd4ff;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            backdrop-filter: blur(16px);
+        }
+
+        .status-chip::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00f5a0, #4f46ef);
+            box-shadow: 0 0 12px rgba(0, 245, 160, 0.8);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4.4rem);
+            line-height: 1.08;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #f6f8ff 20%, #9ab1ff 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            animation: fadeInDown 0.8s ease-out;
         }
 
-        .header .tagline {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            font-weight: 300;
-            animation: fadeIn 1s ease-out 0.3s both;
+        .hero p {
+            color: rgba(230, 234, 255, 0.86);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            max-width: 540px;
+        }
+
+        .hero-actions {
+            margin-top: clamp(24px, 3vw, 40px);
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 22px;
+            border-radius: 18px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            color: #01030a;
+            background: var(--accent);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 20px 45px rgba(0, 245, 160, 0.35);
+        }
+
+        .button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.45), transparent 55%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .button:hover::after {
+            transform: translateX(100%);
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 55px rgba(0, 217, 245, 0.35);
+        }
+
+        .button.secondary {
+            background: rgba(13, 23, 44, 0.85);
+            color: #dfe6ff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: none;
+        }
+
+        .button.secondary:hover,
+        .button.secondary:focus-visible {
+            box-shadow: 0 24px 45px rgba(79, 70, 239, 0.25);
+            color: #fff;
+        }
+
+        .hero-visual {
+            position: relative;
+            padding: clamp(22px, 5vw, 40px);
+            background: var(--glass-strong);
+            border: 1px solid var(--border);
+            border-radius: 34px;
+            backdrop-filter: blur(26px);
+            overflow: hidden;
+            min-height: 280px;
+            box-shadow: 0 25px 60px rgba(12, 18, 42, 0.45);
+        }
+
+        .hero-visual::before,
+        .hero-visual::after {
+            content: '';
+            position: absolute;
+            width: 160%;
+            height: 160%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(18deg);
+            background: conic-gradient(from 90deg at 50% 50%, rgba(0, 245, 160, 0.16), rgba(79, 70, 239, 0.24), rgba(0, 217, 245, 0.16), rgba(255, 255, 255, 0.08));
+            filter: blur(48px);
+            opacity: 0.65;
+        }
+
+        .hero-visual::after {
+            transform: translate(-50%, -50%) rotate(-12deg);
+            opacity: 0.32;
+        }
+
+        .metric-stack {
+            position: relative;
+            display: grid;
+            gap: 18px;
+            z-index: 1;
+        }
+
+        .metric-card {
+            padding: 22px 24px;
+            border-radius: 22px;
+            background: rgba(6, 12, 27, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 18px 45px rgba(8, 15, 32, 0.45);
+        }
+
+        .metric-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        .metric-card .value {
+            font-size: 2.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #00f5a0, #4f46ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        section {
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.3rem, 3vw, 1.7rem);
+            margin-bottom: clamp(18px, 2vw, 28px);
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            letter-spacing: 0.04em;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 18px rgba(0, 245, 160, 0.75);
         }
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: clamp(20px, 3vw, 26px);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
 
-        .bento-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s ease-out both;
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: clamp(22px, 3.5vw, 32px);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(24px);
+            transition: transform 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
         }
 
-        .bento-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
 
-        .bento-card.large {
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        .card:hover,
+        .card:focus-within {
+            border-color: rgba(0, 217, 245, 0.35);
+            box-shadow: 0 24px 65px rgba(4, 10, 28, 0.6);
+        }
+
+        .span-2 {
             grid-column: span 2;
         }
 
-        @media (max-width: 900px) {
-            .bento-card.large {
-                grid-column: span 1;
-            }
+        .span-3 {
+            grid-column: span 3;
         }
 
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #2c3e50;
+        .card-header {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
         }
 
-        .card-title::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 24px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
+        .card-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: rgba(241, 245, 255, 0.95);
+        }
+
+        .card-subtitle {
+            color: rgba(222, 228, 255, 0.7);
+            font-size: 0.9rem;
         }
 
         .info-grid {
             display: grid;
-            gap: 15px;
+            gap: 16px;
         }
 
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+        .info-row {
+            display: grid;
+            gap: 8px;
         }
 
-        .info-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #7f8c8d;
+        .label {
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.08em;
+            font-size: 0.75rem;
+            color: rgba(180, 193, 246, 0.8);
         }
 
-        .info-value {
+        .value {
             font-size: 1rem;
-            color: #2c3e50;
+            color: rgba(241, 245, 255, 0.92);
         }
 
-        .skill-tag {
-            display: inline-block;
-            padding: 8px 16px;
-            margin: 5px 5px 5px 0;
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border: 1px solid #667eea30;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: #5a67d8;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .experience-item, .project-item, .award-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #ecf0f1;
-        }
-
-        .experience-item:last-child, .project-item:last-child, .award-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .experience-title, .project-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .experience-meta, .award-meta {
+        .chip-group {
             display: flex;
-            gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 10px;
+            gap: 10px;
         }
 
-        .meta-item {
+        .chip {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(26, 34, 58, 0.6);
+            color: rgba(204, 214, 255, 0.85);
+            font-size: 0.88rem;
+            letter-spacing: 0.03em;
+            transition: all 0.45s ease;
+        }
+
+        .chip:hover {
+            border-color: rgba(0, 245, 160, 0.45);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(0, 217, 245, 0.25);
+        }
+
+        .timeline {
+            position: relative;
+            display: grid;
+            gap: 22px;
+            padding-left: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            top: 4px;
+            left: -26px;
+            box-shadow: 0 0 12px rgba(0, 245, 160, 0.8);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .timeline-meta {
             font-size: 0.9rem;
-            color: #7f8c8d;
+            color: rgba(200, 212, 255, 0.75);
+            margin-bottom: 8px;
             display: flex;
-            align-items: center;
-            gap: 5px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .meta-item::before {
-            content: '•';
-            color: #667eea;
-            font-weight: bold;
+        .timeline-description {
+            color: rgba(222, 228, 255, 0.75);
+            font-size: 0.92rem;
         }
 
-        .experience-description, .project-description {
-            font-size: 0.95rem;
-            color: #546e7a;
-            line-height: 1.7;
+        .list {
+            list-style: none;
+            display: grid;
+            gap: 14px;
         }
 
-        .education-item {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
+        .list li {
+            position: relative;
+            padding-left: 22px;
+            color: rgba(229, 234, 255, 0.85);
         }
 
-        .education-item:last-child {
-            margin-bottom: 0;
+        .list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 217, 245, 0.6);
+            box-shadow: 0 0 16px rgba(79, 70, 239, 0.55);
         }
 
-        .education-degree {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .education-school {
-            font-size: 1rem;
-            color: #5a67d8;
-            margin-bottom: 5px;
-        }
-
-        .education-note {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            font-style: italic;
-        }
-
-        .performance-badge {
-            display: inline-block;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-            border-radius: 12px;
-            font-weight: 600;
-            margin: 5px 5px 5px 0;
-            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
+        .award {
+            display: grid;
+            gap: 6px;
+            padding: 16px;
+            border-radius: 18px;
+            background: rgba(13, 19, 38, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .award-year {
-            display: inline-block;
-            padding: 4px 12px;
-            background: #667eea;
-            color: white;
-            border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(146, 167, 255, 0.9);
         }
 
         .award-title {
-            font-size: 1rem;
             font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 5px;
         }
 
-        .award-description {
-            font-size: 0.9rem;
-            color: #7f8c8d;
+        .award-desc {
+            font-size: 0.88rem;
+            color: rgba(204, 214, 255, 0.78);
         }
 
-        .hero-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .research-highlight {
+            padding: 18px;
+            border-radius: 20px;
+            background: rgba(11, 20, 39, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .micro-copy {
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(155, 176, 255, 0.7);
+        }
+
+        .contact-card {
+            display: grid;
+            gap: 18px;
             text-align: center;
-            padding: 50px 30px;
-        }
-
-        .hero-card .card-title {
-            color: white;
-            font-size: 1.3rem;
-            justify-content: center;
-        }
-
-        .hero-card .card-title::before {
-            display: none;
-        }
-
-        .hero-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 20px 0;
-        }
-
-        .hero-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        li {
-            padding-left: 20px;
-            position: relative;
-            margin-bottom: 8px;
-        }
-
-        li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .bento-card:nth-child(1) { animation-delay: 0.1s; }
-        .bento-card:nth-child(2) { animation-delay: 0.2s; }
-        .bento-card:nth-child(3) { animation-delay: 0.3s; }
-        .bento-card:nth-child(4) { animation-delay: 0.4s; }
-        .bento-card:nth-child(5) { animation-delay: 0.5s; }
-        .bento-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .contact-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 12px 24px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
         footer {
+            padding: clamp(26px, 4vw, 40px) 0;
             text-align: center;
-            padding: 40px 20px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            color: rgba(170, 185, 240, 0.55);
+            font-size: 0.85rem;
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
+        .animate-in {
+            opacity: 0;
+            transform: translateY(35px) scale(0.98);
+        }
 
-            .header .tagline {
-                font-size: 1rem;
-            }
+        .animate-in.visible {
+            opacity: 1;
+            transform: none;
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
 
-            .bento-grid {
-                grid-template-columns: 1fr;
+        @keyframes float {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1);
             }
+            50% {
+                transform: translate3d(0, -40px, 0) scale(1.05);
+            }
+        }
 
-            .hero-number {
-                font-size: 2rem;
+        @media (max-width: 1024px) {
+            .span-2,
+            .span-3 {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 720px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .nav-links {
+                justify-content: flex-start;
+            }
+            body {
+                padding: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .animate-in {
+                opacity: 1;
+                transform: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Yogi Putra Pratama</h1>
-            <p class="tagline">Digital Innovation Leader | IoT Specialist | Smart City Enthusiast</p>
-        </header>
-
-        <div class="bento-grid">
-            <div class="bento-card">
-                <h2 class="card-title">Personal Info</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">Full Name</span>
-                        <span class="info-value">Yogi Putra Pratama</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Date of Birth</span>
-                        <span class="info-value">June 27, 1997</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Place of Birth</span>
-                        <span class="info-value">Nganjuk, Indonesia</span>
-                    </div>
-                </div>
+    <div class="background">
+        <span class="gradient gradient-1"></span>
+        <span class="gradient gradient-2"></span>
+        <span class="gradient gradient-3"></span>
+    </div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="page">
+        <nav>
+            <div class="brand"><strong>YP</strong> — PORTFOLIO</div>
+            <div class="nav-links">
+                <a href="#profile">Profile</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#research">Research</a>
+                <a href="#awards">Achievements</a>
+                <a href="#contact">Connect</a>
             </div>
+        </nav>
 
-            <div class="bento-card">
-                <h2 class="card-title">Education</h2>
-                <div class="education-item">
-                    <div class="education-degree">S2 Smart-X Informatika</div>
-                    <div class="education-school">Institut Teknologi Bandung (ITB)</div>
-                    <div class="education-note">Komdigi Scholarship - Currently pursuing</div>
-                </div>
-                <div class="education-item">
-                    <div class="education-degree">D4 Teknik Komputer</div>
-                    <div class="education-school">Politeknik Elektronika Negeri Surabaya (PENS)</div>
-                </div>
-            </div>
-
-            <div class="bento-card large">
-                <h2 class="card-title">Technical Skills</h2>
-                <div>
-                    <span class="skill-tag">Internet of Things (IoT)</span>
-                    <span class="skill-tag">Smart City</span>
-                    <span class="skill-tag">Artificial Intelligence</span>
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Blockchain</span>
-                    <span class="skill-tag">Business Intelligence</span>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <h2 class="card-title">Soft Skills</h2>
-                <div>
-                    <span class="skill-tag">Team Work</span>
-                    <span class="skill-tag">Presentation</span>
-                    <span class="skill-tag">Creative</span>
-                    <span class="skill-tag">Analytical</span>
-                    <span class="skill-tag">Leadership</span>
-                    <span class="skill-tag">Communication</span>
-                </div>
-            </div>
-
-            <div class="bento-card hero-card">
-                <h2 class="card-title">Performance Excellence</h2>
-                <div class="performance-badge">2023: NKI 100 - Level P4</div>
-                <div class="performance-badge">2024: NKI 103 - Level P5</div>
-                <p style="margin-top: 20px; font-size: 0.95rem; opacity: 0.95;">Consistently delivering outstanding performance at PT Pos Indonesia</p>
-            </div>
-        </div>
-
-        <div class="bento-grid">
-            <div class="bento-card large">
-                <h2 class="card-title">Professional Experience</h2>
-                
-                <div class="experience-item">
-                    <div class="experience-title">FP - Digital Ideate, Experience, and Strategy</div>
-                    <div class="experience-meta">
-                        <span class="meta-item">PT Pos Indonesia (Persero)</span>
-                        <span class="meta-item">July 2023 - Present</span>
-                    </div>
-                    <div class="experience-description">
-                        Leading digital transformation initiatives and strategic planning for Indonesia's national postal service.
+        <main>
+            <section class="hero">
+                <div class="hero-copy animate-in">
+                    <div class="status-chip">Digital Innovation Leader · IoT & Smart City Specialist</div>
+                    <h1>Yogi Putra Pratama</h1>
+                    <p>
+                        Bridging strategy, emerging technologies, and human-centered experiences to accelerate national-scale digital transformation.
+                        Currently advancing Smart-X Informatics at Institut Teknologi Bandung with Komdigi scholarship support.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button" href="#experience">Explore Journey</a>
+                        <a class="button secondary" href="#projects">View Highlights</a>
                     </div>
                 </div>
-
-                <div class="experience-item">
-                    <div class="experience-title">FP - Demand & Program Management</div>
-                    <div class="experience-meta">
-                        <span class="meta-item">PT Pos Indonesia (Persero)</span>
-                        <span class="meta-item">May 2022 - June 2023</span>
-                    </div>
-                    <div class="experience-description">
-                        Managed digital program demands and strategic initiatives for national-scale projects.
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="experience-title">Community Leader Digital Talent BUMN</div>
-                    <div class="experience-meta">
-                        <span class="meta-item">Fordigi (Forum Digital Indonesia)</span>
-                        <span class="meta-item">August 2023 - Present</span>
+                <div class="hero-visual animate-in">
+                    <div class="metric-stack">
+                        <div class="metric-card">
+                            <h3>Performance 2023</h3>
+                            <div class="value">NKI 100</div>
+                            <p class="micro-copy">Performance Level P4 · PT Pos Indonesia</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Performance 2024</h3>
+                            <div class="value">NKI 103</div>
+                            <p class="micro-copy">Performance Level P5 · PT Pos Indonesia</p>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="experience-item">
-                    <div class="experience-title">Anggota Bidang 5 - Collaborative & Innovations</div>
-                    <div class="experience-meta">
-                        <span class="meta-item">Fordigi (Forum Digital Indonesia)</span>
-                        <span class="meta-item">August 2023 - Present</span>
-                    </div>
+            <section id="profile" class="animate-in">
+                <h2 class="section-title">Profile & Background</h2>
+                <div class="bento-grid">
+                    <article class="card tilt span-2">
+                        <div class="card-header">
+                            <h3>About</h3>
+                            <span class="card-subtitle">Purposeful leadership grounded in systems thinking</span>
+                        </div>
+                        <div class="info-grid">
+                            <div class="info-row">
+                                <span class="label">Nama</span>
+                                <span class="value">Yogi Putra Pratama</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Tempat Lahir</span>
+                                <span class="value">Nganjuk, Indonesia</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Fokus Saat Ini</span>
+                                <span class="value">S2 Smart-X Informatika, Institut Teknologi Bandung — Komdigi Scholarship</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Visi</span>
+                                <span class="value">Mengorkestrasi inovasi digital yang berdampak nyata bagi layanan publik dan ekosistem industri nasional.</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card tilt">
+                        <div class="card-header">
+                            <h3>Soft Skills</h3>
+                            <span class="card-subtitle">Kolaborasi & komunikasi lintas fungsi</span>
+                        </div>
+                        <div class="chip-group">
+                            <span class="chip">Team Work</span>
+                            <span class="chip">Presentation</span>
+                            <span class="chip">Creative</span>
+                            <span class="chip">Analytical</span>
+                            <span class="chip">Leadership</span>
+                            <span class="chip">Communication</span>
+                        </div>
+                    </article>
+
+                    <article class="card tilt">
+                        <div class="card-header">
+                            <h3>Hard Skills</h3>
+                            <span class="card-subtitle">Teknologi terapan & emerging tech</span>
+                        </div>
+                        <div class="chip-group">
+                            <span class="chip">Internet of Things</span>
+                            <span class="chip">Smart City</span>
+                            <span class="chip">Artificial Intelligence</span>
+                            <span class="chip">Machine Learning</span>
+                            <span class="chip">Blockchain</span>
+                            <span class="chip">Business Intelligence</span>
+                        </div>
+                    </article>
+
+                    <article class="card tilt span-2">
+                        <div class="card-header">
+                            <h3>Pendidikan</h3>
+                            <span class="card-subtitle">Integrasi riset dengan implementasi industri</span>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-title">S2 Smart-X Informatika</div>
+                                <div class="timeline-meta">
+                                    <span>Institut Teknologi Bandung</span>
+                                    <span>Komdigi Scholarship · Sedang ditempuh</span>
+                                </div>
+                                <div class="timeline-description">
+                                    Riset dan inovasi untuk solusi digital cerdas yang terukur dan berkelanjutan.
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">D4 Teknik Komputer</div>
+                                <div class="timeline-meta">
+                                    <span>Politeknik Elektronika Negeri Surabaya (PENS)</span>
+                                </div>
+                                <div class="timeline-description">
+                                    Fondasi rekayasa sistem tertanam, komputasi, dan integrasi IoT end-to-end.
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-            </div>
+            </section>
 
-            <div class="bento-card">
-                <h2 class="card-title">Key Projects</h2>
-                
-                <div class="project-item">
-                    <div class="project-title">DIOS - Digital Onboarding System</div>
-                    <div class="meta-item">Project Manager</div>
+            <section id="experience" class="animate-in">
+                <h2 class="section-title">Professional Experience & Leadership</h2>
+                <div class="bento-grid">
+                    <article class="card tilt span-3">
+                        <div class="card-header">
+                            <h3>PT Pos Indonesia (Persero)</h3>
+                            <span class="card-subtitle">Transformasi digital di layanan logistik nasional</span>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-title">FP — Digital Ideate, Experience, and Strategy</div>
+                                <div class="timeline-meta">
+                                    <span>Juli 2023 – Sekarang</span>
+                                </div>
+                                <div class="timeline-description">
+                                    Merancang pengalaman digital dan strategi inovasi untuk mendorong layanan pelanggan yang lebih adaptif dan terintegrasi.
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">FP — Demand & Program Management</div>
+                                <div class="timeline-meta">
+                                    <span>Mei 2022 – Juni 2023</span>
+                                </div>
+                                <div class="timeline-description">
+                                    Mengelola permintaan program digital dan koordinasi lintas unit untuk memastikan eksekusi program strategis berskala nasional.
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card tilt span-3">
+                        <div class="card-header">
+                            <h3>Fordigi — Forum Digital Indonesia</h3>
+                            <span class="card-subtitle">Kolaborasi dan komunitas talenta digital BUMN</span>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-title">Community Leader Digital Talent BUMN</div>
+                                <div class="timeline-meta">
+                                    <span>Agustus 2023 – Sekarang</span>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-title">Anggota Bidang 5 — Collaborative & Innovations</div>
+                                <div class="timeline-meta">
+                                    <span>Agustus 2023 – Sekarang</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
+            </section>
 
-                <div class="project-item">
-                    <div class="project-title">Revitalisasi PO Box</div>
-                    <div class="meta-item">Squad Leader</div>
-                    <div class="project-description">Leading the development of virtual PO Box management application with cashless payment integration.</div>
+            <section id="projects" class="animate-in">
+                <h2 class="section-title">Key Projects & Strategic Impact</h2>
+                <div class="bento-grid">
+                    <article class="card tilt span-2">
+                        <div class="card-header">
+                            <h3>Involvement & Project Leadership</h3>
+                            <span class="card-subtitle">PT Pos Indonesia</span>
+                        </div>
+                        <ul class="list">
+                            <li>
+                                <strong>Project Manager — DIOS (Digital Onboarding System)</strong>
+                                <div class="timeline-description">Mempercepat onboarding digital bagi pelanggan dan mitra dengan pengalaman omnichannel.</div>
+                            </li>
+                            <li>
+                                <strong>Squad Leader — Revitalisasi PO Box</strong>
+                                <div class="timeline-description">Mengarahkan pembuatan aplikasi pemesanan PO Box virtual dengan pembayaran cashless dan manajemen terpadu.</div>
+                            </li>
+                            <li>
+                                <strong>Satgas Pendistribusian Bantuan Pangan Cadangan Beras Pemerintah (BULOG 2023)</strong>
+                                <div class="timeline-description">Menyiapkan dokumen manajemen, dashboard Data Studio, automasi RPA, dan aplikasi AI verifikasi bansos berbasis face recognition.</div>
+                            </li>
+                            <li>
+                                <strong>Project Management Officer</strong>
+                                <div class="timeline-description">Menginisiasi pemanfaatan ClickUp sebagai pusat manajemen proyek untuk seluruh permintaan aplikasi dan dokumen.</div>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="card tilt">
+                        <div class="card-header">
+                            <h3>Kinerja Individu</h3>
+                            <span class="card-subtitle">Ekselen dan konsisten</span>
+                        </div>
+                        <div class="research-highlight">
+                            <p>Triwulan I–IV 2023 · NKI 100 · Performance Level P4.</p>
+                            <p>Triwulan I–II 2024 · NKI 103 · Performance Level P5.</p>
+                            <p style="margin-top: 12px; color: rgba(194, 206, 255, 0.78);">Menunjukkan komitmen tinggi terhadap target organisasi dan kualitas layanan.</p>
+                        </div>
+                    </article>
                 </div>
+            </section>
 
-                <div class="project-item">
-                    <div class="project-title">BULOG 2023 - Bantuan Pangan</div>
-                    <div class="meta-item">Junior Analyst-2, Satgas Member</div>
-                    <div class="project-description">Developed AI-powered face recognition for beneficiary verification and RPA application for social aid distribution.</div>
+            <section id="research" class="animate-in">
+                <h2 class="section-title">Research & Innovation Portfolio</h2>
+                <div class="bento-grid">
+                    <article class="card tilt span-2">
+                        <div class="card-header">
+                            <h3>IoT & Intelligent Systems</h3>
+                            <span class="card-subtitle">Solusi berbasis data untuk sektor agrikultur & logistik</span>
+                        </div>
+                        <ul class="list">
+                            <li>
+                                <strong>Seecow / Klikternak</strong>
+                                <div class="timeline-description">Sistem cerdas yang menggabungkan IoT dan AI untuk memantau kesehatan sapi perah, deteksi dini penyakit, dan rekomendasi penanganan.</div>
+                                <div class="micro-copy">Publikasi: Designing of a Smart Collar for Dairy Cow Behavior Monitoring — IES 2019.</div>
+                            </li>
+                            <li>
+                                <strong>ZOLA — IoT untuk Budidaya Ikan Air Tawar</strong>
+                                <div class="timeline-description">Perangkat aerasi cerdas (nanobubble) dengan monitoring serta chatbot untuk menjaga kualitas air dan meningkatkan produktivitas tambak.</div>
+                            </li>
+                            <li>
+                                <strong>Lapak Ikan Apps</strong>
+                                <div class="timeline-description">UI/UX aplikasi yang menghubungkan petani ikan dengan pelanggan langsung, memungkinkan kontrol harga mandiri.</div>
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="card tilt">
+                        <div class="card-header">
+                            <h3>Publikasi IES 2019</h3>
+                            <span class="card-subtitle">Ekosistem riset terintegrasi</span>
+                        </div>
+                        <ul class="list">
+                            <li>Health Monitoring and Early Diseases Detection on Dairy Cow Based on Internet of Things and Intelligent System.</li>
+                            <li>ArmChain — Blockchain Based Sensor Data Communication for Vehicle-as-a-Mobile Sensor Network.</li>
+                            <li>Identification of Symptoms via NLP untuk Diagnosis Penyakit berbasis ICD-11.</li>
+                        </ul>
+                    </article>
                 </div>
+            </section>
 
-                <div class="project-item">
-                    <div class="project-title">ClickUp Implementation</div>
-                    <div class="meta-item">Project Management Officer</div>
-                    <div class="project-description">Initiated centralized project management system for all IT applications and documentation.</div>
+            <section id="awards" class="animate-in">
+                <h2 class="section-title">Achievements & Recognition</h2>
+                <div class="bento-grid">
+                    <article class="card tilt span-2">
+                        <div class="card-header">
+                            <h3>Penghargaan Kompetisi (2016–2019)</h3>
+                            <span class="card-subtitle">Validasi atas inovasi dan kapabilitas teknis</span>
+                        </div>
+                        <div class="info-grid">
+                            <div class="award">
+                                <span class="award-year">2019</span>
+                                <span class="award-title">Best Paper Award</span>
+                                <span class="award-desc">International Electronics Symposium (IES)</span>
+                            </div>
+                            <div class="award">
+                                <span class="award-year">2019</span>
+                                <span class="award-title">Juara 1 Kategori IoT</span>
+                                <span class="award-desc">Kompetisi Mahasiswa Indonesia Politeknik Nasional (KMIPN)</span>
+                            </div>
+                            <div class="award">
+                                <span class="award-year">2019</span>
+                                <span class="award-title">Juara 1 Agrobisnis — SEECOW</span>
+                                <span class="award-desc">Kompetisi Teknologi Tepat Guna</span>
+                            </div>
+                            <div class="award">
+                                <span class="award-year">2019</span>
+                                <span class="award-title">3rd Winner IoT Makers Creation</span>
+                                <span class="award-desc">Kementerian Perindustrian & Kominfo</span>
+                            </div>
+                            <div class="award">
+                                <span class="award-year">2018</span>
+                                <span class="award-title">Juara 2 IoT Competition</span>
+                                <span class="award-desc">MAGE 4 — Kategori Mahasiswa</span>
+                            </div>
+                            <div class="award">
+                                <span class="award-year">2018</span>
+                                <span class="award-title">Juara 2 & Favorit Tenant</span>
+                                <span class="award-desc">Polytexpo International Conference & Exhibition — POLINEMA</span>
+                            </div>
+                            <div class="award">
+                                <span class="award-year">2016</span>
+                                <span class="award-title">Semi-Finalist</span>
+                                <span class="award-desc">Imagine Cup Indonesia</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card tilt">
+                        <div class="card-header">
+                            <h3>Speaking Engagements</h3>
+                            <span class="card-subtitle">Berbagi pengetahuan dan pengalaman</span>
+                        </div>
+                        <ul class="list">
+                            <li>Pengisi materi “Pengenalan Lomba IoT Kampus”.</li>
+                            <li>Pembicara di Bekraf Habibie Festival 2019 (Nasional).</li>
+                            <li>Online IoT Workshop “Be Productive with IoT” 2021.</li>
+                        </ul>
+                    </article>
                 </div>
-            </div>
-        </div>
+            </section>
 
-        <div class="bento-grid">
-            <div class="bento-card large">
-                <h2 class="card-title">Research Portfolio</h2>
-                
-                <div class="project-item">
-                    <div class="project-title">Seecow / Klikternak</div>
-                    <div class="project-description">
-                        An intelligent system combining IoT and AI technologies for dairy cow health management, including monitoring, early disease detection, and treatment recommendations.
-                        <br><br>
-                        <strong>Publication:</strong> "Designing of a Smart Collar for Dairy Cow Behavior Monitoring with Application Monitoring in Microservices and Internet of Things-Based Systems" - International Electronics Symposium (IES) 2019
-                    </div>
+            <section id="contact" class="animate-in">
+                <h2 class="section-title">Let’s Collaborate</h2>
+                <div class="bento-grid">
+                    <article class="card tilt contact-card span-3">
+                        <p class="micro-copy">KOLABORASI · INOVASI · TRANSFORMASI</p>
+                        <h3 style="font-size: clamp(1.6rem, 3vw, 2.2rem); font-family: 'Space Grotesk', sans-serif;">Terbuka untuk kolaborasi di bidang IoT, Smart City, AI, dan transformasi digital BUMN.</h3>
+                        <p style="color: rgba(210, 220, 255, 0.75); max-width: 580px; margin: 0 auto;">
+                            Mari diskusikan ide, peluang, atau tantangan digital Anda. Yogi siap membantu organisasi meningkatkan kapabilitas dan menciptakan dampak nyata melalui teknologi.
+                        </p>
+                        <a class="button" href="mailto:connect@yogiputrapratama.id">Hubungi Yogi</a>
+                    </article>
                 </div>
-
-                <div class="project-item">
-                    <div class="project-title">ZOLA</div>
-                    <div class="project-description">
-                        IoT solution for freshwater fish farming featuring smart nanobubble aerator with monitoring system and intelligent chatbot for water quality management and control.
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-title">Lapak Ikan Apps</div>
-                    <div class="project-description">
-                        UI/UX application helping fish farmers connect directly with customers and set their own prices, eliminating unfair pricing from middlemen.
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <div class="project-title">Additional Research Publications (IES 2019)</div>
-                    <ul>
-                        <li>Health Monitoring and Early Diseases Detection on Dairy Cow Based on Internet of Things and Intelligent System</li>
-                        <li>ArmChain - A Blockchain Based Sensor Data Communication For the Vehicle as a Mobile Sensor Network</li>
-                        <li>Identification of Symptoms Based on NLP for Disease Diagnosis Based on ICD-11</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bento-card">
-                <h2 class="card-title">Awards & Achievements</h2>
-                
-                <div class="award-item">
-                    <span class="award-year">2019</span>
-                    <div class="award-title">Best Paper Award</div>
-                    <div class="award-description">International Electronics Symposium (IES) - 7 participating countries</div>
-                </div>
-
-                <div class="award-item">
-                    <span class="award-year">2019</span>
-                    <div class="award-title">1st Place - IoT Category</div>
-                    <div class="award-description">KMIPN (Kompetisi Mahasiswa Indonesia Politeknik Nasional)</div>
-                </div>
-
-                <div class="award-item">
-                    <span class="award-year">2019</span>
-                    <div class="award-title">1st Place - Agrobisnis Category</div>
-                    <div class="award-description">Kompetisi Teknologi Tepat Guna - SEECOW Project</div>
-                </div>
-
-                <div class="award-item">
-                    <span class="award-year">2019</span>
-                    <div class="award-title">3rd Winner</div>
-                    <div class="award-description">IoT Makers Creation (Kemenperin & Kemenkominfo)</div>
-                </div>
-
-                <div class="award-item">
-                    <span class="award-year">2018</span>
-                    <div class="award-title">2nd Place - IoT Competition</div>
-                    <div class="award-description">MAGE 4 - Student Category</div>
-                </div>
-
-                <div class="award-item">
-                    <span class="award-year">2018</span>
-                    <div class="award-title">2nd Place & Favorite Tenant</div>
-                    <div class="award-description">Polytexpo International Conference - POLINEMA</div>
-                </div>
-
-                <div class="award-item">
-                    <span class="award-year">2016</span>
-                    <div class="award-title">Semi-Finalist</div>
-                    <div class="award-description">Imagine Cup Indonesia</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="bento-grid">
-            <div class="bento-card">
-                <h2 class="card-title">Speaking Engagements</h2>
-                <ul>
-                    <li>Introduction to IoT Competition for Campus Students</li>
-                    <li>Speaker at Bekraf Habibie Festival 2019 (National Event)</li>
-                    <li>Online IoT Workshop "Be Productive with IoT" 2021</li>
-                </ul>
-            </div>
-
-            <div class="bento-card hero-card">
-                <h2 class="card-title">Let's Connect</h2>
-                <p style="opacity: 0.95; margin: 20px 0;">Interested in collaboration or want to discuss digital innovation, IoT, or Smart City projects?</p>
-                <a href="mailto:yogi@example.com" class="contact-link">Get in Touch</a>
-            </div>
-        </div>
+            </section>
+        </main>
 
         <footer>
-            <p>&copy; 2024 Yogi Putra Pratama. All rights reserved.</p>
-            <p style="margin-top: 10px; font-size: 0.85rem;">Digital Innovation Leader | IoT Specialist | Smart City Enthusiast</p>
+            © 2024 Yogi Putra Pratama · Digital Innovation Leader · IoT & Smart City Specialist
         </footer>
     </div>
+
+    <script>
+        const animatedSections = document.querySelectorAll('.animate-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+        animatedSections.forEach((section) => observer.observe(section));
+
+        const tiltCards = window.matchMedia('(pointer: fine)').matches
+            ? document.querySelectorAll('.tilt')
+            : [];
+
+        tiltCards.forEach((card) => {
+            card.addEventListener('mousemove', (event) => {
+                const rect = card.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                const rotateX = ((y - rect.height / 2) / rect.height) * -12;
+                const rotateY = ((x - rect.width / 2) / rect.width) * 12;
+                card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
 </body>
 </html>
