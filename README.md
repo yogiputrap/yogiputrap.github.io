@@ -8,7 +8,7 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
+- [Overview]
 - [Features](#features)
 - [Architecture](#architecture)
 - [Quick Start](#quick-start)
